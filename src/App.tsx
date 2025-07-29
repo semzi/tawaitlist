@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./index.css";
 import FormInput from "./FormInput";
+import "./fade.js"
 import { Book, Calendar1Icon, Lightbulb, ShipWheel } from "lucide-react";
 
 // Custom hook to fetch random profile pictures
@@ -47,7 +48,7 @@ function App(): React.JSX.Element {
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <header className="text-center py-8">
+      <header className="text-center parallax-content py-8">
         <div className="page-padding-x">
           <img
             src="/logo-text.png"
@@ -56,20 +57,23 @@ function App(): React.JSX.Element {
           />
           <div className="flex bg-transparent w-fit mx-auto  text-blue-600 my-auto px-5 py-2 items-center rounded-full font-medium border-2 border-blue-600 mt-4">
             <Calendar1Icon className="inline-block h-5 mr-1" />
-            <p>Available in Early 2025</p>
+            <p>Available in Early 2026</p>
           </div>
         </div>
       </header>
 
       {/* Hero Section */}
-      <section className="pb-12">
-        <div className="page-padding-x">
+      <section className=" pb-12">
+        <div className="page-padding-x ">
           <h2 className="md:text-4xl text-3xl max-w-lg mx-auto text-center font-bold text-gray-800 mb-8 animate-glass-shine">
             Get early access to a Game-Changing Platform
           </h2>
           <p className="text-gray-600 text-md mb-10 max-w-2xl mx-auto text-center">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            TikiAnaly is transforming how fans, scouts, analysts, and athletes
+            interact with sports data from the grassroots to the global stage.
+            Be among the first to experience AI-powered insights, live local
+            coverage, and a platform built to celebrate every sport, every club,
+            everywhere.
           </p>
 
           {/* Waitlist Form */}
@@ -113,50 +117,64 @@ function App(): React.JSX.Element {
         </div>
       </section>
 
+      <img src="/mockup.png" alt="" className="fade-on-scroll opacity-0 transition-none w-100 mx-auto" />
       {/* Features Section */}
       <section className="py-16 bg-gray-50">
         <div className="page-padding-x">
-          <h3 className="text-3xl font-bold text-gray-800 text-center mb-12">
-            Everything you available need in product
+          <h3 className="text-3xl fade-on-scroll opacity-0 transition-none font-bold text-gray-800 text-center mb-12">
+            Features Built With You! <br /> Yes, You in Mind
           </h3>
           <div className="md:flex gap-4 ">
             {/* AI Chat Feature */}
-             <div className="flex shadow-2xl rounded-xl bg-white p-5 flex-col">
-                  <div className="flex gap-2 mb-4">
-                    <Lightbulb className="h-8 w-8" />
-                  <h4 className="text-lg font-semibold text-gray-800">AI Chat</h4>
-                  </div>
-                  <p className="text-gray-600 text-sm">
-                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                  </p>
+            <div className="flex fade-on-scroll opacity-0 transition-none flex-1/3 shadow-2xl rounded-xl bg-white p-5 flex-col">
+              <div className="flex gap-2 mb-4">
+                <Lightbulb className="h-8 w-8" />
+                <h4 className="text-lg font-semibold text-gray-800">
+                  AI Chat — Your Personal Sports Analyst
+                </h4>
               </div>
+              <p className="text-gray-600 text-sm">
+                Ask it anything from “Who scored in the local derby last week?”
+                to “What’s the best formation for 7-a-side?” This isn’t just a
+                chatbot; it’s your sport-savvy bestie with endless banter,
+                insights, and no judgment for loving mid-table drama.
+              </p>
+            </div>
 
             {/* Sport Varieties Feature */}
-            <div className="flex shadow-2xl bg-[#0056D2] my-6 md:my-1 rounded-xl  p-5 flex-col">
-                  <div className="flex text-white gap-2 mb-4">
-                    <ShipWheel className="h-8 w-8" />
-                  <h4 className="text-lg font-semibold">Sport Varieties</h4>
-                  </div>
-                  <p className="text-white text-sm">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                  </p>
+            <div className="flex  fade-on-scroll opacity-0 transition-none shadow-2xl flex-1/3 bg-[#0056D2] my-6 md:my-1 rounded-xl  p-5 flex-col">
+              <div className="flex text-white gap-2 mb-4">
+                <ShipWheel className="h-8 w-8" />
+                <h4 className="text-lg font-semibold">
+                  Every Sport, Every Street, Every Stat
+                </h4>
               </div>
+              <p className="text-white text-sm">
+                We cover more than just the mainstream. Whether it’s streetball,
+                futsal, volleyball, or table tennis finals in your neighborhood;
+                We see you! <br /> TikiAnaly celebrates the unsung heroes, wild
+                goals, and everyday greatness in every game.
+              </p>
+            </div>
 
             {/* Top News Feature */}
-             <div className="flex shadow-2xl rounded-xl bg-white p-5 flex-col">
-                  <div className="flex gap-2 mb-4">
-                    <Book className="h-8 w-8" />
-                  <h4 className="text-lg font-semibold text-gray-800">Top News</h4>
-                  </div>
-                  <p className="text-gray-600 text-sm">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                  </p>
+            <div className="flex fade-on-scroll opacity-0 transition-none flex-1/3 shadow-2xl rounded-xl bg-white p-5 flex-col">
+              <div className="flex gap-2 mb-4">
+                <Book className="h-8 w-8" />
+                <h4 className="text-lg font-semibold text-gray-800">
+                  Top News
+                </h4>
               </div>
+              <p className="text-gray-600 text-sm">
+                From hyper-local match updates to big club scoops, our news feed
+                is built for the community. Smart, fun, and straight to the
+                point like your favourite group chat, but with fewer arguments
+                and more actual facts.
+              </p>
+            </div>
           </div>
         </div>
       </section>
-
-      {/* Platform Screenshot Section */}
 
       {/* Footer */}
       <footer className="py-8 text-center">
@@ -166,6 +184,7 @@ function App(): React.JSX.Element {
           </p>
         </div>
       </footer>
+      {/* <script src="/fade.js"></script> */}
     </div>
   );
 }
