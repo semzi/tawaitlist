@@ -187,6 +187,7 @@ input[type="checkbox"].disabled\:bg-check:checked {
 @layer utilities {
   .animate-glass-shine {
     position: relative;
+    overflow: hidden;
   }
   
   .animate-glass-shine::before {
