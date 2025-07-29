@@ -49,7 +49,7 @@ function App(): React.JSX.Element {
       {/* Header */}
       <header className="text-center py-8">
         <div className="page-padding-x">
-          <img src="/public/logo-text.png" alt="logo" className='h-20 max-w-lg mx-auto' />
+          <img src="/logo-text.png" alt="logo" className='h-20 max-w-lg mx-auto' />
           <div className="inline-block bg-blue-100 text-blue-600 px-4 py-1 rounded-full text-sm font-medium">
             Graduation in Early 2025
           </div>
@@ -74,7 +74,7 @@ function App(): React.JSX.Element {
                   id="email"
                   label='Email Address'
                   placeholder="example@gmail.com"
-                  icon='/public/Vector.png'
+                  icon='/Vector.png'
                   required
                 />
               
