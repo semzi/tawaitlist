@@ -1,6 +1,6 @@
 // import  footerLinks  from '/data/footerLink'
 const footerLinks = [
-  { label: "About Us", href: "#" }
+  { label: "", href: "#" }
 ];
 
 export const FooterComp = () => {
@@ -11,7 +11,7 @@ export const FooterComp = () => {
           className="flex flex-col gap-7
          max-w-150"
         >
-          <h1 className="text-xl md:text-2xl font-bold">TikiAnaly</h1>
+          <img src="/logo2.png" className="w-80" alt="TikiAnaly Logo" />
           <p className="">
             TikiAnaly is transforming how fans, scouts, analysts, and athletes
             interact with sports data from the grassroots to the global stage.
@@ -39,7 +39,7 @@ export const FooterComp = () => {
         </div>
       </div>
       <p className="text-center mb-8 mt-18">
-        Copyright ©2025 Tikianaly / All rights reserved
+        Copyright ©2025 Tikianaly  All rights reserved
       </p>
     </div>
   );
