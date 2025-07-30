@@ -16,6 +16,7 @@ import axios from "axios";
 
 const baseUrl = "https://tikianaly-service-backend.onrender.com";
 const endpoint = "/api/v1/waitlist/join-waitlist";
+const proxyUrl = "https://corsproxy.io/?";
 
 // Custom hook to fetch random profile pictures
 const useRandomProfilePictures = (count: number) => {
@@ -179,7 +180,7 @@ function App(): React.JSX.Element {
                 const email = emailInput.value;
 
                 axios
-                  .post(`${endpoint}`, {
+                  .post(`${proxyUrl}${baseUrl}${endpoint}`, {
                     email: email,
                   })
                   .then((response) => {

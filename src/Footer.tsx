@@ -19,9 +19,9 @@ export const FooterComp = () => {
             coverage, and a platform built to celebrate every sport, every club,
             everywhere.
           </p>
-          <div className="flex gap-7">
-            <img src="/facebook.png" className=" h-8" alt="" />
-            <img src="/x.png" className=" h-8" alt="" />
+            <div className="flex gap-7">
+            {/* Facebook SVG */}
+            <svg className="h-8" viewBox="0 0 24 24" fill="currentColor" aria-label="Facebook"></svg>
           </div>
         </div>
         <div className="links sz-4">
