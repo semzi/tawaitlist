@@ -200,9 +200,9 @@ input[type="checkbox"].disabled\:bg-check:checked {
     background: linear-gradient(
       90deg,
       transparent 0%,
-      rgba(255, 255, 255, 0.3) 25%,
-      rgba(255, 255, 255, 0.5) 50%,
-      rgba(255, 255, 255, 0.3) 75%,
+      rgba(255, 255, 255, 0.4) 25%,
+      rgba(255, 255, 255, 0.8) 50%,
+      rgba(255, 255, 255, 0.4) 75%,
       transparent 100%
     );
     animation: glass-shine 3s ease-in-out infinite;
