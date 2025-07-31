@@ -11,11 +11,8 @@ export const FooterComp = () => {
         <div className="flex flex-col max-w-150">
           <img src="/logo2.png" className="w-60" alt="TikiAnaly Logo" />
           <p>
-            TikiAnaly is transforming how fans, scouts, analysts, and athletes
-            interact with sports data from the grassroots to the global stage.
-            Be among the first to experience AI-powered insights, live local
-            coverage, and a platform built to celebrate every sport, every club,
-            everywhere.
+            TikiAnaly is reimagining how grassroots and elite sports communities
+            connect, analyze, and celebrate every play.
           </p>
           <div className="flex gap-7 mt-5">
             {/* Facebook SVG */}
@@ -57,7 +54,11 @@ export const FooterComp = () => {
               </svg>
             </a>
             {/* X (Twitter) SVG */}
-            <a href="https://x.com/TikiAnaly" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://x.com/TikiAnaly"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 x="0px"
