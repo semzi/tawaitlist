@@ -1,3 +1,4 @@
+import { MailIcon } from "lucide-react";
 
 
 const FormInput = ({
@@ -16,17 +17,11 @@ const FormInput = ({
       {label && <p className="text-[14px] sm:text-[15px] md:text-[16px] mb-2">{label}</p>}
       
       <div
-        className={`input flex items-center gap-3 h-[50px] sm:h-[50px] md:h-[56px] 
+        className={`input flex items-center gap-4 h-[50px] sm:h-[50px] md:h-[56px] 
         w-full max-w-full sm:max-w-md md:max-w-lg 
         border border-snow-200 px-3 sm:px-4 mb-4 rounded-[8px] ${className}`}
       >
-        {icon && (
-          <div className="p-1">
-            <img src={icon} alt="" className="" />
-          </div>
-        )}
-
-        {icon && <div className="py-3 w-[2px] bg-gray-200"></div>}
+        <MailIcon className=" text-gray-500" />
 
         <input
           type={type}

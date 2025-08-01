@@ -53,6 +53,7 @@ function App(): React.JSX.Element {
   // const [email, setEmail] = useState('')
   const { profilePictures, loading } = useRandomProfilePictures(4);
   const [success, setSuccess] = useState(false);
+  const [loaded, setLoaded] = useState(false);
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Handle form submission
@@ -99,7 +100,7 @@ function App(): React.JSX.Element {
             insights and live grassroots action. We will notify you when we
             launch. Stay tuned!
           </p>
-          
+
           <div
             className="bg-gray-200 text-gray-500 w-[100%] flex justify-between rounded md:w-xl p-4 cursor-pointer"
             onClick={() => {
@@ -193,11 +194,13 @@ function App(): React.JSX.Element {
                   })
                   .catch((error) => {
                     if (error?.response?.status === 409) {
+                      setLoaded(true);
                       toast.info(
                         error?.response?.data?.message ||
                           "You’re already on the waitlist!"
                       );
                     } else {
+                      setLoaded(false);
                       toast.error(
                         error?.response?.data?.message ||
                           "Failed to join the waitlist. Please try again."
@@ -207,23 +210,58 @@ function App(): React.JSX.Element {
               }}
               className="max-w-lg mx-auto mb-3"
             >
-              <div className="mb-4">
-                <FormInput
-                  type="email"
-                  id="email"
-                  name="email"
-                  label="Email Address"
-                  placeholder="example@gmail.com"
-                  icon="/Vector.png"
-                  required
-                />
-              </div>
-              <button
-                type="submit"
-                className="w-full bg-blue-600 text-white font-bold py-2 px-6 rounded-sm hover:bg-blue-700 transition-colors"
-              >
-                JOIN THE WAITLIST
-              </button>
+                <div className="mb-4">
+                  <FormInput
+                    type="email"
+                    id="email"
+                    name="email"
+                    label="Email Address"
+                    placeholder="example@gmail.com"
+                    icon="/Vector.png"
+                    required
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                      const email = e.target.value;
+                      // Simple email validation
+                      const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+                      setLoaded(isValid);
+                    }}
+                  />
+                </div>
+                <button
+                  type="submit"
+                  disabled={!loaded}
+                  className={`w-full bg-blue-600 text-white font-bold py-2 px-6 rounded-sm hover:bg-blue-700 transition-colors flex items-center justify-center ${
+                    !loaded ? "opacity-60 cursor-not-allowed" : ""
+                  }`}
+                >
+                  {loaded ? (
+                    <>
+                      <svg
+                        className="animate-spin h-5 w-5 mr-2 text-white"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        ></circle>
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                        ></path>
+                      </svg>
+                      Submit to Join Waitlist!
+                    </>
+                  ) : (
+                    "JOIN THE WAITLIST"
+                  )}
+                </button>
             </form>
 
             {/* Social Proof */}

@@ -17,7 +17,7 @@ export const FooterComp = () => {
           <div className="flex gap-7 mt-5">
             {/* Facebook SVG */}
             <a
-              href="https://facebook.com"
+              href="https://www.facebook.com/share/1CU4SPDQon/?mibextid=wwXIfr"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -36,7 +36,7 @@ export const FooterComp = () => {
             </a>
             {/* Instagram SVG */}
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/tikianaly2025?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
               target="_blank"
               rel="noopener noreferrer"
             >
