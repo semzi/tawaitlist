@@ -259,7 +259,7 @@ function App(): React.JSX.Element {
                       Submit to Join Waitlist!
                     </>
                   ) : (
-                    "JOIN THE WAITLIST"
+                    <>{loaded ? "Joining..." : "JOIN THE WAITLIST"}</>
                   )}
                 </button>
             </form>
