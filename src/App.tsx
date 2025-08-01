@@ -59,6 +59,7 @@ function App(): React.JSX.Element {
     // Handle form submission
     console.log("Email submitted:");
   };
+  const [submitting, setSubmitting] = useState(false); // NEW loader state
 
   return (
     <div className="min-h-screen bg-white">
@@ -174,6 +175,8 @@ function App(): React.JSX.Element {
             <form
               onSubmit={async (e) => {
                 e.preventDefault();
+                setSubmitting(true); // Start loader
+
                 const form = e.target as HTMLFormElement;
                 const emailInput = form.elements.namedItem(
                   "email"
@@ -181,9 +184,7 @@ function App(): React.JSX.Element {
                 const email = emailInput.value;
 
                 axios
-                  .post(`${proxyUrl}${baseUrl}${endpoint}`, {
-                    email: email,
-                  })
+                  .post(`${proxyUrl}${baseUrl}${endpoint}`, { email })
                   .then((response) => {
                     toast.success(
                       response?.data?.message ||
@@ -191,79 +192,80 @@ function App(): React.JSX.Element {
                     );
                     form.reset();
                     setSuccess(true);
+                    setLoaded(false);
                   })
                   .catch((error) => {
                     if (error?.response?.status === 409) {
-                      setLoaded(true);
                       toast.info(
                         error?.response?.data?.message ||
                           "You’re already on the waitlist!"
                       );
                     } else {
-                      setLoaded(false);
                       toast.error(
                         error?.response?.data?.message ||
                           "Failed to join the waitlist. Please try again."
                       );
                     }
+                  })
+                  .finally(() => {
+                    setSubmitting(false); // End loader
                   });
               }}
               className="max-w-lg mx-auto mb-3"
             >
-                <div className="mb-4">
-                  <FormInput
-                    type="email"
-                    id="email"
-                    name="email"
-                    label="Email Address"
-                    placeholder="example@gmail.com"
-                    icon="/Vector.png"
-                    required
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                      const email = e.target.value;
-                      // Simple email validation
-                      const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-                      setLoaded(isValid);
-                    }}
-                  />
-                </div>
-                <button
-                  type="submit"
-                  disabled={!loaded}
-                  className={`w-full bg-blue-600 text-white font-bold py-2 px-6 rounded-sm hover:bg-blue-700 transition-colors flex items-center justify-center ${
-                    !loaded ? "opacity-60 cursor-not-allowed" : ""
-                  }`}
-                >
-                  {loaded ? (
-                    <>
-                      <svg
-                        className="animate-spin h-5 w-5 mr-2 text-white"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                      >
-                        <circle
-                          className="opacity-25"
-                          cx="12"
-                          cy="12"
-                          r="10"
-                          stroke="currentColor"
-                          strokeWidth="4"
-                        ></circle>
-                        <path
-                          className="opacity-75"
-                          fill="currentColor"
-                          d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
-                        ></path>
-                      </svg>
-                      Submit to Join Waitlist!
-                    </>
-                  ) : (
-                    <>{loaded ? "Joining..." : "JOIN THE WAITLIST"}</>
-                  )}
-                </button>
-            </form>
+              <div className="mb-4">
+                <FormInput
+                  type="email"
+                  id="email"
+                  name="email"
+                  label="Email Address"
+                  placeholder="example@gmail.com"
+                  icon="/Vector.png"
+                  required
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    const email = e.target.value;
+                    const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+                    setLoaded(isValid);
+                  }}
+                />
+              </div>
 
+              <button
+                type="submit"
+                disabled={!loaded || submitting}
+                className={`w-full bg-blue-600 text-white font-bold py-2 px-6 rounded-sm hover:bg-blue-700 transition-colors flex items-center justify-center ${
+                  !loaded || submitting ? "opacity-60 cursor-not-allowed" : ""
+                }`}
+              >
+                {submitting ? (
+                  <>
+                    <svg
+                      className="animate-spin h-5 w-5 mr-2 text-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      ></circle>
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8v4l3-3-3-3v4a8 8 0 100 16v-4l-3 3 3 3v-4a8 8 0 01-8-8z"
+                      ></path>
+                    </svg>
+                    Joining...
+                  </>
+                ) : (
+                  "JOIN THE WAITLIST"
+                )}
+              </button>
+            </form>
             {/* Social Proof */}
             <div className="flex items-center max-w-lg mx-auto gap-2 text-gray-600">
               <div className="flex -space-x-1">
