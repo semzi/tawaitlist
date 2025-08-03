@@ -198,7 +198,7 @@ function App(): React.JSX.Element {
                     if (error?.response?.status === 409) {
                       toast.info(
                         error?.response?.data?.message ||
-                          "You’re already on the waitlist!"
+                          "You’re already on the waitlist! "
                       );
                     } else {
                       toast.error(
