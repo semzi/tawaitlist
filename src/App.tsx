@@ -54,11 +54,7 @@ function App(): React.JSX.Element {
   const { profilePictures, loading } = useRandomProfilePictures(4);
   const [success, setSuccess] = useState(false);
   const [loaded, setLoaded] = useState(false);
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission
-    console.log("Email submitted:");
-  };
+  
   const [submitting, setSubmitting] = useState(false); // NEW loader state
 
   return (
