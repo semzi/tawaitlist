@@ -14,7 +14,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 
-const baseUrl = "https://tikianaly-service-backend.onrender.com";
+const baseUrl = "https://backend.tikianaly.com";
 const endpoint = "/api/v1/waitlist/join-waitlist";
 const proxyUrl = "https://corsproxy.io/?";
 
@@ -74,7 +74,7 @@ function App(): React.JSX.Element {
           />
           <div className="flex backdrop-blur-lg bg-blue-50 w-fit mx-auto text-sm  text-blue-600 my-auto px-5 py-2 items-center rounded-full font-medium border-2 border-blue-600 mt-4">
             <Calendar1Icon className="inline-block h-5 mr-1" />
-            <p>Available in Early 2026</p>
+            <p>Web App Coming Dec 2026!</p>
           </div>
         </div>
       </header>
@@ -97,7 +97,7 @@ function App(): React.JSX.Element {
             You’re on the Waitlist
           </h3>
           <p className="text-gray-600 text-md mb-5 max-w-2xl text-center">
-            You’re in! Get ready to explore the future of sports with AI-powered
+            You’re about to become one of the Top OGs in a Top Class Sport Community! Get ready to explore the future of sports with AI-powered
             insights and live grassroots action. We will notify you when we
             launch. Stay tuned!
           </p>
@@ -161,7 +161,7 @@ function App(): React.JSX.Element {
         <section className=" pb-12">
           <div className="page-padding-x ">
             <h2 className="md:text-4xl text-3xl max-w-lg mx-auto text-center pb-3 font-bold text-gray-800 mb-5 animate-glass-shine">
-              Get early access to a Game-Changing Platform
+              Get early access to a Game-Changing Platform Where the Banter gets Better
             </h2>
             <p className="text-gray-600 text-md mb-10 max-w-2xl mx-auto text-center">
               TikiAnaly is transforming how fans, scouts, analysts, and athletes
