@@ -180,7 +180,7 @@ function App(): React.JSX.Element {
                 const email = emailInput.value;
 
                 axios
-                  .post(`${proxyUrl}${baseUrl}${endpoint}`, { email })
+                  .post(`${baseUrl}${endpoint}`, { email })
                   .then((response) => {
                     toast.success(
                       response?.data?.message ||
