@@ -11,7 +11,7 @@ export const FooterComp = () => {
         <div className="flex flex-col max-w-150">
           <img src="/logo2.png" className="w-60" alt="TikiAnaly Logo" />
           <p>
-           Sport Space made for everyone. <br /> Where the Banter gets Better!
+           Sport Space made for everyone. 
           </p>
           <div className="flex gap-7 mt-5">
             {/* Facebook SVG */}
