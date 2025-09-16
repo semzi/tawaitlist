@@ -16,7 +16,7 @@ import axios from "axios";
 
 const baseUrl = "https://backend.tikianaly.com";
 const endpoint = "/api/v1/waitlist/join-waitlist";
-const proxyUrl = "https://corsproxy.io/?";
+// const proxyUrl = "https://corsproxy.io/?";
 
 // Custom hook to fetch random profile pictures
 const useRandomProfilePictures = (count: number) => {
@@ -68,10 +68,18 @@ function App(): React.JSX.Element {
             alt="logo"
             className="h-20 max-w-lg mx-auto"
           />
-          <div className="flex backdrop-blur-lg bg-blue-50 w-fit mx-auto text-sm  text-blue-600 my-auto px-5 py-2 items-center rounded-full font-medium border-2 border-blue-600 mt-4">
-            <Calendar1Icon className="inline-block h-5 mr-1" />
-            <p>Web App Coming Dec 2026!</p>
-          </div>
+         <div className="relative flex backdrop-blur-lg bg-gradient-to-b from-blue-200 to-blue-50 w-fit mx-auto text-sm text-blue-600 px-5 py-2 items-center rounded-full font-medium border border-blue-400 mt-4
+  animate-squish-gloss overflow-hidden">
+
+  {/* Strong glossy shine (top highlight) */}
+  <span className="absolute inset-0 rounded-full bg-gradient-to-b from-white/90 via-white/40 to-transparent opacity-90 pointer-events-none"></span>
+
+  {/* Moving glossy streak */}
+  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/60 to-transparent -translate-x-full animate-shimmer"></span>
+  <Calendar1Icon className="inline-block h-5 mr-1 z-10 text-blue-700" />
+  <p className="z-10">Web App Coming Dec <span className="text-brand-secondary font-[600]"> 2025 ! </span></p>
+</div>
+
         </div>
       </header>
 
