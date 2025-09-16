@@ -165,7 +165,7 @@ function App(): React.JSX.Element {
         <section className=" pb-12">
           <div className="page-padding-x ">
             <h2 className="md:text-4xl text-3xl max-w-lg mx-auto text-center pb-3 font-bold text-gray-800 mb-5 animate-glass-shine">
-              Get early access to a Game-Changing Platform
+              Get early access to the Game-Changing Platform
             </h2>
             <p className="text-gray-600 text-md mb-10 max-w-2xl mx-auto text-center">
               TikiAnaly is transforming how fans, scouts, analysts, and athletes
