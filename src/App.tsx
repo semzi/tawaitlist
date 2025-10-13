@@ -62,7 +62,18 @@ function App(): React.JSX.Element {
       <ToastContainer />
       {/* Header */}
       <header className="text-center parallax-content py-8">
-        <div className="page-padding-x">
+        <div className="page-padding-x relative">
+          {/* Blog Button - Top Right */}
+          <a
+            href="https://blog.tikianaly.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="absolute top-0 right-4 flex flex-col sm:flex-row items-center gap-1 sm:gap-2 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white px-3 sm:px-5 py-2 sm:py-2.5 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+          >
+            <Newspaper className="h-4 w-4" />
+            <span className="md:text-xs md:block hidden">Visit Blog</span>
+          </a>
+          
           <img
             src="/logo-text.png"
             alt="logo"
