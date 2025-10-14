@@ -14,7 +14,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 
-const baseUrl = "https://backend.tikianaly.com";
+const baseUrl = "https://corsproxy.io/https://tikianaly-service-backend.onrender.com";
 const endpoint = "/api/v1/waitlist/join-waitlist";
 // const proxyUrl = "https://corsproxy.io/?";
 
