@@ -1,4 +1,5 @@
 const footerLinks = [
+  { label: "Blog", href: "https://blog.tikianaly.com" },
   { label: "Contact", href: "#" },
   { label: "Privacy Policy", href: "#" },
   { label: "Careers", href: "#" },
