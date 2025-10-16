@@ -1,8 +1,10 @@
+import { Link } from "react-router-dom";
+
 const footerLinks = [
-  { label: "Blog", href: "https://blog.tikianaly.com" },
-  { label: "Contact", href: "#" },
-  { label: "Privacy Policy", href: "#" },
-  { label: "Careers", href: "#" },
+  { label: "Blog", href: "https://blog.tikianaly.com", external: true },
+  { label: "Contact", href: "mailto:info@tikianaly.com", external: true },
+  { label: "Privacy Policy", href: "/privacy-policy", external: false },
+  { label: "Careers", href: "#", external: true },
 ];
 
 export const FooterComp = () => {
@@ -217,13 +219,25 @@ export const FooterComp = () => {
         <div className="links mr-10 sz-4">
           <div className="grid grid-cols-2 gap-x-30 sm:grid-cols-2 gap-4">
             {footerLinks.map((link, index) => (
-              <a
-                key={index}
-                href={link.href}
-                className="hover:text-brand-secondary text-sm"
-              >
-                {link.label}
-              </a>
+              link.external ? (
+                <a
+                  key={index}
+                  href={link.href}
+                  className="hover:text-brand-secondary text-sm"
+                  target={link.href.startsWith('http') ? '_blank' : undefined}
+                  rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link
+                  key={index}
+                  to={link.href}
+                  className="hover:text-brand-secondary text-sm"
+                >
+                  {link.label}
+                </Link>
+              )
             ))}
           </div>
         </div>
