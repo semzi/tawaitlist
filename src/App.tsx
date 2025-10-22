@@ -16,7 +16,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 
-const baseUrl = "https://corsproxy.io/https://tikianaly-service-backend.onrender.com";
+const baseUrl = "https://corsproxy.io/https://tikianaly-service-backend-g2fp.onrender.com";
 const endpoint = "/api/v1/waitlist/join-waitlist";
 // const proxyUrl = "https://corsproxy.io/?";
 
@@ -57,19 +57,37 @@ function App(): React.JSX.Element {
   const [success, setSuccess] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [showMainContent, setShowMainContent] = useState(false);
+  const [hideBlurText, setHideBlurText] = useState(false);
   
   const [submitting, setSubmitting] = useState(false); // NEW loader state
 
   const handleAnimationComplete = () => {
+    console.log('Animation completed, hiding BlurText and showing main content in 2 seconds');
     setTimeout(() => {
+      console.log('Hiding BlurText and showing main content now');
+      setHideBlurText(true);
       setShowMainContent(true);
     }, 2000);
   };
 
+  // Fallback: Show main content after 10 seconds if animation doesn't complete
+  useEffect(() => {
+    const fallbackTimer = setTimeout(() => {
+      if (!showMainContent) {
+        console.log('Fallback: Showing main content after 10 seconds');
+        setShowMainContent(true);
+      }
+    }, 10000);
+
+    return () => clearTimeout(fallbackTimer);
+  }, [showMainContent]);
+
+  console.log('Current showMainContent state:', showMainContent);
+  
   return (
     <div className="min-h-screen bg-white relative">
       {/* Full page BlurText overlay - shown initially */}
-      {!showMainContent && (
+      {!hideBlurText && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-white">
           <div className="text-center">
             <BlurText 
@@ -86,7 +104,7 @@ function App(): React.JSX.Element {
       {/* Main content with slide-in animation */}
       {showMainContent && (
         <div className="relative z-10">
-          <div className="absolute opacity-0 inset-0 z-0">
+          <div className="absolute opacity-0 inset-0 z-0 pointer-events-none">
             <Silk
               speed={5}
               scale={1}
@@ -208,7 +226,7 @@ function App(): React.JSX.Element {
 
         {/* Hero Section */}
         {!success && (
-        <section className=" pb-12">
+        <section className="relative z-50 pb-12">
           <div className="page-padding-x ">
             <h2 className="md:text-4xl text-3xl max-w-lg mx-auto text-center pb-3 font-bold text-gray-800 mb-5 animate-glass-shine">
               Get early access to the Game-Changing Platform, Where the Banter gets Better
@@ -223,6 +241,7 @@ function App(): React.JSX.Element {
 
             {/* Waitlist Form */}
             <form
+              className="relative max-w-lg mx-auto mb-3 z-50  p-4"
               onSubmit={async (e) => {
                 e.preventDefault();
                 setSubmitting(true); // Start loader
@@ -232,6 +251,14 @@ function App(): React.JSX.Element {
                   "email"
                 ) as HTMLInputElement;
                 const email = emailInput.value;
+
+                // Client-side validation
+                const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+                if (!isValidEmail) {
+                  toast.error("Please enter a valid email address");
+                  setSubmitting(false);
+                  return;
+                }
 
                 axios
                   .post(`${baseUrl}${endpoint}`, { email })
@@ -261,31 +288,36 @@ function App(): React.JSX.Element {
                     setSubmitting(false); // End loader
                   });
               }}
-              className="max-w-lg mx-auto mb-3"
             >
-              <div className="mb-4">
-                <FormInput
+              <div className="mb-4 relative z-50">
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                  Email Address
+                </label>
+                <input
                   type="email"
                   id="email"
                   name="email"
-                  label="Email Address"
                   placeholder="example@gmail.com"
-                  icon="/Vector.png"
                   required
+                  className="w-full relative z-50 px-4 py-3 border-2 border-blue-300 rounded-lg focus:ring-1 focus:ring-blue-500 focus:border-blue-100 focus:border-1 outline-none bg-white shadow-lg"
+                  onClick={() => console.log('Email input clicked!')}
+                  onFocus={() => console.log('Email input focused!')}
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                     const email = e.target.value;
                     const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
                     setLoaded(isValid);
+                    console.log('Email input changed:', email);
                   }}
                 />
               </div>
 
               <button
                 type="submit"
-                disabled={!loaded || submitting}
-                className={`w-full bg-blue-600 text-white font-bold py-2 px-6 rounded-sm hover:bg-blue-700 transition-colors flex items-center justify-center ${
-                  !loaded || submitting ? "opacity-60 cursor-not-allowed" : ""
+                disabled={submitting}
+                className={`w-full relative z-50 bg-blue-600 text-white font-bold py-2 px-6 rounded-sm hover:bg-blue-700 transition-colors flex items-center justify-center ${
+                  submitting ? "opacity-60 cursor-not-allowed" : ""
                 }`}
+                onClick={() => console.log('Button clicked!')}
               >
                 {submitting ? (
                   <>
