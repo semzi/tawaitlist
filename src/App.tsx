@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./index.css";
 import FormInput from "./FormInput";
+import BlurText from "./BurText";
+import Silk from './Silk';
 import "./fade.js";
 import {
   BotMessageSquare,
@@ -54,48 +56,81 @@ function App(): React.JSX.Element {
   const { profilePictures, loading } = useRandomProfilePictures(4);
   const [success, setSuccess] = useState(false);
   const [loaded, setLoaded] = useState(false);
+  const [showMainContent, setShowMainContent] = useState(false);
   
   const [submitting, setSubmitting] = useState(false); // NEW loader state
 
+  const handleAnimationComplete = () => {
+    setTimeout(() => {
+      setShowMainContent(true);
+    }, 2000);
+  };
+
   return (
-    <div className="min-h-screen bg-white">
-      <ToastContainer />
-      {/* Header */}
-      <header className="text-center parallax-content py-8">
-        <div className="page-padding-x relative">
-          {/* Blog Button - Top Right */}
-          <a
-            href="https://blog.tikianaly.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="absolute top-0 right-4 flex flex-col sm:flex-row items-center gap-1 sm:gap-2 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white px-3 sm:px-5 py-2 sm:py-2.5 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-          >
-            <Newspaper className="h-4 w-4" />
-            <span className="md:text-xs md:block hidden">Visit Blog</span>
-          </a>
-          
-          <img
-            src="/logo-text.png"
-            alt="logo"
-            className="h-20 max-w-lg mx-auto"
-          />
-         <div className="relative flex backdrop-blur-lg bg-gradient-to-b from-blue-200 to-blue-50 w-fit mx-auto text-sm text-blue-600 px-5 py-2 items-center rounded-full font-medium border border-blue-400 mt-4
-  animate-squish-gloss overflow-hidden">
-
-  {/* Strong glossy shine (top highlight) */}
-  <span className="absolute inset-0 rounded-full bg-gradient-to-b from-white/90 via-white/40 to-transparent opacity-90 pointer-events-none"></span>
-
-  {/* Moving glossy streak */}
-  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/60 to-transparent -translate-x-full animate-shimmer"></span>
-  <Calendar1Icon className="inline-block h-5 mr-1 z-10 text-blue-700" />
-  <p className="z-10">Web App Coming Dec <span className="text-brand-secondary font-[600]"> 2025 ! </span></p>
-</div>
-
+    <div className="min-h-screen bg-white relative">
+      {/* Full page BlurText overlay - shown initially */}
+      {!showMainContent && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-white">
+          <div className="text-center">
+            <BlurText 
+              text="Web App Coming Dec 2025 !" 
+              delay={100}
+              animateBy="words" 
+              className="page-padding-x font-bold text-6xl md:text-6xl text-blue-600 text-center" 
+              onAnimationComplete={handleAnimationComplete} 
+            />
+          </div>
         </div>
-      </header>
+      )}
 
-      {success && (
-        <div className="flex flex-col items-center page-padding-x mx-auto">
+      {/* Main content with slide-in animation */}
+      {showMainContent && (
+        <div className="relative z-10">
+          <div className="absolute opacity-0 inset-0 z-0">
+            <Silk
+              speed={5}
+              scale={1}
+              color="#0056d2"
+              noiseIntensity={1.5}
+              rotation={0}
+            />
+          </div>
+          <ToastContainer />
+          {/* Header */}
+          <header className="text-center parallax-content py-8">
+            <div className="page-padding-x relative">
+              {/* Blog Button - Top Right */}
+              <a
+                href="https://blog.tikianaly.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="absolute top-0 right-4 flex flex-col sm:flex-row items-center gap-1 sm:gap-2 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white px-3 sm:px-5 py-2 sm:py-2.5 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+              >
+                <Newspaper className="h-4 w-4" />
+                <span className="md:text-xs md:block hidden">Visit Blog</span>
+              </a>
+              
+              <img
+                src="/logo-text.png"
+                alt="logo"
+                className="h-20 max-w-lg mx-auto"
+              />
+             <div className="relative flex backdrop-blur-lg bg-gradient-to-b from-blue-200 to-blue-50 w-fit mx-auto text-sm text-blue-600 px-5 py-2 items-center rounded-full font-medium border border-blue-400 mt-4">
+
+      {/* Strong glossy shine (top highlight) */}
+      <span className="absolute inset-0 rounded-full bg-gradient-to-b from-white/90 via-white/40 to-transparent opacity-90 pointer-events-none"></span>
+
+      {/* Moving glossy streak */}
+      <span className=" via-white/60 to-transparent"></span>
+      <Calendar1Icon className="inline-block h-5 mr-1 z-10 text-blue-700" />
+      <span className="font-bold">Web App Coming Dec 2025 !</span>
+    </div>
+
+            </div>
+          </header>
+
+          {success && (
+            <div className="flex flex-col items-center page-padding-x mx-auto">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -171,8 +206,8 @@ function App(): React.JSX.Element {
         </div>
       )}
 
-      {/* Hero Section */}
-      {!success && (
+        {/* Hero Section */}
+        {!success && (
         <section className=" pb-12">
           <div className="page-padding-x ">
             <h2 className="md:text-4xl text-3xl max-w-lg mx-auto text-center pb-3 font-bold text-gray-800 mb-5 animate-glass-shine">
@@ -303,13 +338,13 @@ function App(): React.JSX.Element {
         </section>
       )}
 
-      <img
-        src="/mockup.png"
-        alt=""
-        className="fade-on-scroll opacity-0 transition-none w-100 mx-auto"
-      />
-      {/* Features Section */}
-      <section className="py-16 bg-gray-50">
+        <img
+          src="/mockup.png"
+          alt=""
+          className="fade-on-scroll opacity-0 transition-none w-100 mx-auto"
+        />
+        {/* Features Section */}
+        <section className="py-16 bg-gray-50">
         <div className="page-padding-x">
           <h3 className="text-3xl fade-on-scroll opacity-0 transition-none font-bold text-gray-800 text-center mb-12">
             Features Built With You! <br /> Yes, You in Mind
@@ -366,9 +401,11 @@ function App(): React.JSX.Element {
         </div>
       </section>
 
-      {/* Footer */}
-      <FooterComp />
-      {/* <script src="/fade.js"></script> */}
+          {/* Footer */}
+          <FooterComp />
+          {/* <script src="/fade.js"></script> */}
+        </div>
+      )}
     </div>
   );
 }
