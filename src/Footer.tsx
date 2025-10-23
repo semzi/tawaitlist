@@ -9,7 +9,7 @@ const footerLinks = [
 
 export const FooterComp = () => {
   return (
-    <div className="page-padding-x py-15 bg-brand-primary text-white">
+    <div className="relative z-50 page-padding-x py-15 bg-brand-primary text-white">
       <div className="flex-col gap-y-15 lg:flex-row flex justify-between">
         <div className="flex flex-col max-w-150">
           <img src="/logo2.png" className="w-60" alt="TikiAnaly Logo" />

@@ -434,7 +434,9 @@ function App(): React.JSX.Element {
       </section>
 
           {/* Footer */}
-          <FooterComp />
+          <div className="relative z-50">
+            <FooterComp />
+          </div>
           {/* <script src="/fade.js"></script> */}
         </div>
       )}
