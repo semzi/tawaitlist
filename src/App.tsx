@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./index.css";
-import FormInput from "./FormInput";
 import BlurText from "./BurText";
 import Silk from './Silk';
 import "./fade.js";
@@ -55,7 +54,7 @@ function App(): React.JSX.Element {
   // const [email, setEmail] = useState('')
   const { profilePictures, loading } = useRandomProfilePictures(4);
   const [success, setSuccess] = useState(false);
-  const [loaded, setLoaded] = useState(false);
+  const [_, setLoaded] = useState(false);
   const [showMainContent, setShowMainContent] = useState(false);
   const [hideBlurText, setHideBlurText] = useState(false);
   
