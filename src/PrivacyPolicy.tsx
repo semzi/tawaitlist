@@ -1,12 +1,26 @@
 import React from "react";
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const PrivacyPolicy: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-white">
+    <>
+      <Helmet>
+        <title>Privacy Policy - TikiAnaly</title>
+        <meta name="description" content="TikiAnaly Privacy Policy - Learn how we collect, use, and protect your personal information when you join our waitlist and use our services." />
+        <meta name="keywords" content="privacy policy, data protection, TikiAnaly, personal information, data security" />
+        <meta property="og:title" content="Privacy Policy - TikiAnaly" />
+        <meta property="og:description" content="Learn how TikiAnaly protects your privacy and handles your personal information." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.tikianaly.com/privacy-policy" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Privacy Policy - TikiAnaly" />
+        <meta name="twitter:description" content="Learn how TikiAnaly protects your privacy and handles your personal information." />
+      </Helmet>
+      <div className="min-h-screen bg-white">
       {/* Header */}
       <header className="bg-gradient-to-r from-blue-600 to-blue-500 text-white py-6">
         <div className="max-w-4xl mx-auto px-4">
@@ -206,7 +220,8 @@ const PrivacyPolicy: React.FC = () => {
           </p>
         </div>
       </footer>
-    </div>
+      </div>
+    </>
   );
 };
 

@@ -14,6 +14,7 @@ import FooterComp from "./Footer";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
+import { Helmet } from "react-helmet-async";
 
 const baseUrl = "https://corsproxy.io/https://tikianaly-service-backend-g2fp.onrender.com";
 const endpoint = "/api/v1/waitlist/join-waitlist";
@@ -84,7 +85,20 @@ function App(): React.JSX.Element {
   console.log('Current showMainContent state:', showMainContent);
   
   return (
-    <div className="min-h-screen bg-white relative">
+    <>
+      <Helmet>
+        <title>TikiAnaly - AI-Powered Sports Insights | Join the Waitlist</title>
+        <meta name="description" content="Join TikiAnaly waitlist for AI-powered grassroots sports insights, live local coverage, and a platform built to celebrate every sport, every club, everywhere." />
+        <meta name="keywords" content="sports, AI, analytics, grassroots, football, basketball, local sports, waitlist" />
+        <meta property="og:title" content="TikiAnaly - AI-Powered Sports Insights" />
+        <meta property="og:description" content="Join the waitlist for the game-changing platform where the banter gets better. AI-powered insights for every sport, everywhere." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.tikianaly.com" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="TikiAnaly - AI-Powered Sports Insights" />
+        <meta name="twitter:description" content="Join the waitlist for the game-changing platform where the banter gets better." />
+      </Helmet>
+      <div className="min-h-screen bg-white relative">
       {/* Full page BlurText overlay - shown initially */}
       {!hideBlurText && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-white">
@@ -439,7 +453,8 @@ function App(): React.JSX.Element {
           {/* <script src="/fade.js"></script> */}
         </div>
       )}
-    </div>
+      </div>
+    </>
   );
 }
 
